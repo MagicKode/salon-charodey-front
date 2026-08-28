@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../feature/auth/onboarding/onboarding_screen.dart';
+import '../../feature/auth/splashscreen/splash_screen.dart';
 import '../../uikit/colors/app_colors.dart';
 import '../../config/device_config.dart';
 
@@ -50,36 +51,6 @@ class MyApp extends StatelessWidget {
         secondary: AppColors.accentGold,
         background: Color(0xFF1A1A1A),
       ),
-    );
-  }
-}
-
-// ---------- SplashScreen ----------
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(milliseconds: 500), () {
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const OnboardingScreen()),
-        );
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
     );
   }
 }
