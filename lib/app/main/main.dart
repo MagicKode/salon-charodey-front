@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../feature/auth/onboarding/onboarding_screen.dart';
 import '../../uikit/colors/app_colors.dart';
+import '../../config/device_config.dart';
 
 void main() {
+  print('🚀 Запуск на: ${isEmulator ? "ЭМУЛЯТОРЕ" : "РЕАЛЬНОМ УСТРОЙСТВЕ"}');
+  print('🌐 Хост: $baseHost');
+
+  runApp(const MyApp());
   runApp(const MyApp());
 }
 
