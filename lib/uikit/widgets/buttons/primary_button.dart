@@ -15,11 +15,13 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = AppColors.of(context);
+
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: isFilled ? AppColors.primary : AppColors.transparent,
-        foregroundColor: isFilled ? AppColors.textPrimary : AppColors.primary,
+        foregroundColor: isFilled ? colors.textPrimary : AppColors.primary,
         elevation: isFilled ? 4 : 0,
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         shape: RoundedRectangleBorder(
@@ -29,9 +31,10 @@ class PrimaryButton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w600,
+          color: isFilled ? AppColors.white : AppColors.primary,
         ),
       ),
     );

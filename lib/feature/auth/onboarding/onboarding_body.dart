@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../uikit/colors/app_colors.dart';
 import 'domain/onboarding_model.dart';
 
@@ -25,7 +24,7 @@ class OnboardingBody extends StatelessWidget {
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
             colors: [
-              AppColors.black.withOpacity(0.9),         // вместо Colors.black
+              AppColors.black.withOpacity(0.9),
               AppColors.black.withOpacity(0.6),
               AppColors.transparent,
             ],
@@ -42,12 +41,12 @@ class OnboardingBody extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.textPrimary,
-                  shadows: const [
+                  color: AppColors.white, // всегда белый
+                  shadows: [
                     Shadow(
                       blurRadius: 12.0,
-                      color: AppColors.overlayDark,
-                      offset: Offset(0, 2),
+                      color: AppColors.black.withOpacity(0.5),
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
@@ -58,19 +57,19 @@ class OnboardingBody extends StatelessWidget {
                 pageData.description,
                 style: TextStyle(
                   fontSize: 18,
-                  color: AppColors.textPrimary,
+                  color: AppColors.white, // всегда белый
                   height: 1.5,
-                  shadows: const [
+                  shadows: [
                     Shadow(
                       blurRadius: 10.0,
-                      color: AppColors.overlayDark,
-                      offset: Offset(0, 1),
+                      color: AppColors.black.withOpacity(0.5),
+                      offset: const Offset(0, 1),
                     ),
                   ],
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 120),
+              const SizedBox(height: 120), // отступ до индикатора и кнопки
             ],
           ),
         ),

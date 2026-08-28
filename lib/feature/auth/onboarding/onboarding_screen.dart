@@ -49,7 +49,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       description: AppStrings.onboardingDesc6,
       imageAsset: 'assets/images/onboarding6.png',
     ),
-
   ];
 
   @override
@@ -75,8 +74,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = AppColors.of(context);
+
     return Scaffold(
-      backgroundColor: AppColors.backgroundDark,
+      backgroundColor: colors.background,
       body: Stack(
         children: [
           PageView(
@@ -100,7 +101,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
-                        color: AppColors.black.withOpacity(0.4), // используем AppColors.black
+                        color: colors.skipButtonBackground,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: TextButton(
@@ -113,7 +114,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         child: Text(
                           AppStrings.skip,
                           style: TextStyle(
-                            color: AppColors.textPrimary,
+                            color: AppColors.white, // всегда белый
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
@@ -136,7 +137,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           dotWidth: 10,
                           spacing: 8,
                           activeDotColor: AppColors.accentGold,
-                          dotColor: AppColors.textSecondary,
+                          dotColor: colors.textSecondary,
                         ),
                       ),
                       PrimaryButton(

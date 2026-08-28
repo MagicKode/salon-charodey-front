@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../feature/auth/onboarding/onboarding_screen.dart';
 import '../../uikit/colors/app_colors.dart';
 
@@ -14,10 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Чародей',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: AppColors.backgroundDark,
-        primaryColor: AppColors.primary,
-      ),
+      theme: _buildLightTheme(),
+      darkTheme: _buildDarkTheme(),
+      themeMode: ThemeMode.system,
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
@@ -25,8 +23,33 @@ class MyApp extends StatelessWidget {
       },
     );
   }
+
+  ThemeData _buildLightTheme() {
+    return ThemeData.light().copyWith(
+      scaffoldBackgroundColor: const Color(0xFFF5F0EB),
+      primaryColor: AppColors.primary,
+      colorScheme: const ColorScheme.light(
+        primary: AppColors.primary,
+        secondary: AppColors.accentGold,
+        background: Color(0xFFF5F0EB),
+      ),
+    );
+  }
+
+  ThemeData _buildDarkTheme() {
+    return ThemeData.dark().copyWith(
+      scaffoldBackgroundColor: const Color(0xFF1A1A1A),
+      primaryColor: AppColors.primary,
+      colorScheme: const ColorScheme.dark(
+        primary: AppColors.primary,
+        secondary: AppColors.accentGold,
+        background: Color(0xFF1A1A1A),
+      ),
+    );
+  }
 }
 
+// ---------- SplashScreen ----------
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -38,7 +61,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Показываем онбординг сразу (без shared_preferences)
     Future.delayed(const Duration(milliseconds: 500), () {
       if (mounted) {
         Navigator.pushReplacement(
@@ -51,10 +73,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    return const Scaffold(
+      body: Center(child: CircularProgressIndicator()),
+    );
   }
 }
 
+// ---------- HomeScreen (заглушка) ----------
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
