@@ -14,9 +14,6 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
 
-  // ВАЖНО: Это НЕ черный цвет (0xFF000000).
-  // Это глубокий графитовый цвет, соответствующий фону логотипа.
-  // Если нужно 100% попадание, возьмите пипетку и вставьте точный Hex-код.
   static const Color _backgroundColor = Color(0xFF1D1919);
 
   @override
@@ -24,12 +21,13 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-    // Красим верхнюю и нижнюю панели телефона в этот же цвет
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: _backgroundColor,
-      systemNavigationBarColor: _backgroundColor,
-      statusBarIconBrightness: Brightness.light,
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: _backgroundColor,
+        systemNavigationBarColor: _backgroundColor,
+        statusBarIconBrightness: Brightness.light,
+      ),
+    );
 
     _animationController = AnimationController(
       vsync: this,
@@ -60,12 +58,12 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _backgroundColor, // Единый сплошной фон страницы
+      backgroundColor: _backgroundColor,
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
           child: Image.asset(
-            'assets/splashscreen/splash_screen.jpg', // или .png
+            'assets/splashscreen/splash_screen.jpg',
             width: 200,
             height: 200,
             fit: BoxFit.contain,

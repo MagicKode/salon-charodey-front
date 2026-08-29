@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../feature/auth/onboarding/onboarding_screen.dart';
+import 'package:salon_charodey_front/feature/core/homepagescreen/homepage_screen.dart';
+
+import '../../config/device_config.dart';
 import '../../feature/auth/splashscreen/splash_screen.dart';
 import '../../uikit/colors/app_colors.dart';
-import '../../config/device_config.dart';
 
 void main() {
   print('🚀 Запуск на: ${isEmulator ? "ЭМУЛЯТОРЕ" : "РЕАЛЬНОМ УСТРОЙСТВЕ"}');
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
-        '/home': (context) => const HomeScreen(),
+        '/home': (context) => const HomePageScreen(),
       },
     );
   }
@@ -51,19 +52,6 @@ class MyApp extends StatelessWidget {
         secondary: AppColors.accentGold,
         background: Color(0xFF1A1A1A),
       ),
-    );
-  }
-}
-
-// ---------- HomeScreen (заглушка) ----------
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Главная')),
-      body: const Center(child: Text('Добро пожаловать в Чародей!')),
     );
   }
 }
