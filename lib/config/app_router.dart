@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../uikit/colors/app_colors.dart';
+import '../feature/auth/login/login_screen.dart';
 import '../feature/auth/onboarding/onboarding_screen.dart';
 import '../feature/auth/splashscreen/splash_screen.dart';
 import '../feature/core/homepagescreen/homepage_screen.dart';
@@ -15,6 +16,7 @@ class AppRouter {
   static const String onboarding = '/onboarding';
   static const String home = '/home';
   static const String profile = '/profile';
+  static const String login = '/login';
 
   late final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -28,6 +30,11 @@ class AppRouter {
         path: onboarding,
         name: 'onboarding',
         builder: (context, state) => OnboardingScreen(),
+      ),
+      GoRoute(
+        path: login,
+        name: 'login',
+        builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
         path: home,

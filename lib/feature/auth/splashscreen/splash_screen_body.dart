@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:salon_charodey_front/feature/auth/splashscreen/screens/splash_logo.dart';
 
-class SplashScreenBody extends StatefulWidget {
-  const SplashScreenBody({super.key});
+class SplashBody extends StatefulWidget {
+  const SplashBody({super.key});
 
   @override
-  State<SplashScreenBody> createState() => _SplashScreenBodyState();
+  State<SplashBody> createState() => _SplashBodyState();
 }
 
-class _SplashScreenBodyState extends State<SplashScreenBody>
+class _SplashBodyState extends State<SplashBody>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -49,15 +50,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
     return Scaffold(
       backgroundColor: _backgroundColor,
       body: Center(
-        child: FadeTransition(
-          opacity: _fadeAnimation,
-          child: Image.asset(
-            'assets/splashscreen/splash_screen.jpg',
-            width: 200,
-            height: 200,
-            fit: BoxFit.contain,
-          ),
-        ),
+        child: SplashLogo(animation: _fadeAnimation),
       ),
     );
   }

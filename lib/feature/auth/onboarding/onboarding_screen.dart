@@ -41,7 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _finishOnboarding() {
-    context.go(AppRouter.home);
+    context.go(AppRouter.login);
   }
 
   @override

@@ -72,6 +72,7 @@ flutter:
     - assets/images/onboarding_5.webp
     - assets/images/onboarding_6.webp
     - assets/splashscreen/splash_screen.jpg
+    - assets/logo/logo.jpg
 
 
   # To add assets to your application, add an assets section, like this:
