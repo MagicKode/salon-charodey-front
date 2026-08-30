@@ -1,38 +1,33 @@
 import 'package:flutter/material.dart';
-import '../../../uikit/colors/app_colors.dart';
+import 'package:salon_charodey_front/feature/core/homepagescreen/sections/searchbar/search_body.dart';
+import 'sections/greetingheader/greeting_body.dart';
 
 class HomePageBody extends StatelessWidget {
   const HomePageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final colors = AppColors.of(context);
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            Icons.home,
-            size: 80,
-            color: isDark ? colors.textPrimary : AppColors.accentGold,
-          ),
+          const GreetingBody(userName: 'Гость'),
           const SizedBox(height: 16),
-          Text(
-            'Главная страница',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600,
-              color: isDark ? colors.textPrimary : colors.textPrimary,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Здесь будет контент',
-            style: TextStyle(
-              fontSize: 16,
-              color: isDark ? colors.textSecondary : colors.textSecondary,
+          const SearchBody(),
+          const SizedBox(height: 24),
+          Expanded(
+            child: Center(
+              child: Text(
+                'Здесь будет контент\n(категории, услуги, мастера...)',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.grey[400]
+                      : Colors.grey[600],
+                ),
+              ),
             ),
           ),
         ],
