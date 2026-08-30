@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../uikit/colors/app_colors.dart';
+import '../profilescreen/profilescreen_body.dart';
 import 'homepage_body.dart';
 
 class HomePageScreen extends StatefulWidget {
-  const HomePageScreen({super.key});
+  final ValueNotifier<ThemeMode> themeNotifier;
+
+  const HomePageScreen({super.key, required this.themeNotifier});
 
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();
@@ -18,24 +21,24 @@ class _HomePageScreenState extends State<HomePageScreen> {
     final colors = AppColors.of(context);
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
-    // ЛОГИКА ЦВЕТОВ
-    // Светлая тема: шапка/низ - орехово-коричневый, фон - крем-фисташковый
-    // Тёмная тема: всё залито единым цветом (графитовый)
     final Color headerColor = isDark
         ? colors.background
         : AppColors.primaryDark;
     final Color navBarColor = isDark
         ? colors.background
         : AppColors.primaryDark;
-    final Color bodyColor = isDark
-        ? colors.background
-        : colors.background; // В LightColors это кремовый
-
-    // Цвет иконок и текста в шапке/панели
+    final Color bodyColor = colors.background;
     final Color iconColor = isDark ? colors.textPrimary : AppColors.accentGold;
 
+    // Страницы создаются каждый раз при перестроении
+    final List<Widget> pages = [
+      const HomePageBody(),
+      const Center(child: Text('Каталог (заглушка)')), // замените позже
+      ProfileScreebBody(themeNotifier: widget.themeNotifier),
+    ];
+
     return Scaffold(
-      backgroundColor: bodyColor, // Единый фон страницы
+      backgroundColor: bodyColor,
       appBar: AppBar(
         backgroundColor: headerColor,
         foregroundColor: iconColor,
@@ -50,15 +53,17 @@ class _HomePageScreenState extends State<HomePageScreen> {
           ),
         ),
       ),
-      body: const HomePageBody(),
+      body: IndexedStack(index: _currentIndex, children: pages),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
         backgroundColor: navBarColor,
         selectedItemColor: iconColor,
-        // Золотой/белый для активной
         unselectedItemColor: iconColor.withOpacity(0.5),
-        // Полупрозрачный для неактивных
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(

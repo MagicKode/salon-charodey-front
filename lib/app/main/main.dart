@@ -1,32 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:salon_charodey_front/feature/core/homepagescreen/homepage_screen.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../config/device_config.dart';
-import '../../feature/auth/splashscreen/splash_screen.dart';
+import '../../config/app_router.dart';
 import '../../uikit/colors/app_colors.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final prefs = await SharedPreferences.getInstance();
+  final themeIndex = prefs.getInt('theme_mode') ?? 0;
+  final initialTheme = ThemeMode.values[themeIndex];
+
   print('🚀 Запуск на: ${isEmulator ? "ЭМУЛЯТОРЕ" : "РЕАЛЬНОМ УСТРОЙСТВЕ"}');
   print('🌐 Хост: $baseHost');
 
-  runApp(const MyApp());
-  runApp(const MyApp());
+  runApp(MyApp(initialTheme: initialTheme));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  final ThemeMode initialTheme;
+  const MyApp({super.key, required this.initialTheme});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late ValueNotifier<ThemeMode> _themeNotifier;
+  late AppRouter _appRouter;
+
+  @override
+  void initState() {
+    super.initState();
+    _themeNotifier = ValueNotifier<ThemeMode>(widget.initialTheme);
+    _appRouter = AppRouter(themeNotifier: _themeNotifier);
+  }
+
+  @override
+  void dispose() {
+    _themeNotifier.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Чародей',
-      theme: _buildLightTheme(),
-      darkTheme: _buildDarkTheme(),
-      themeMode: ThemeMode.system,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const SplashScreen(),
-        '/home': (context) => const HomePageScreen(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: _themeNotifier,
+      builder: (context, themeMode, child) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'Чародей',
+          theme: _buildLightTheme(),
+          darkTheme: _buildDarkTheme(),
+          themeMode: themeMode,
+          routerConfig: _appRouter.router,
+        );
       },
     );
   }

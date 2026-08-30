@@ -16,4 +16,6 @@ class AppStrings {
   static const String skip = 'Пропустить';
   static const String next = 'Далее';
   static const String getStarted = 'Начать';
+
+
 }
