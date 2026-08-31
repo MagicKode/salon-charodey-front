@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salon_charodey_front/feature/core/homepagescreen/sections/description/description_body.dart';
 import 'package:salon_charodey_front/feature/core/homepagescreen/sections/locationinfo/location_body.dart';
 import 'package:salon_charodey_front/feature/core/homepagescreen/sections/searchbar/search_body.dart';
 import 'sections/greetingheader/greeting_body.dart';
@@ -18,6 +19,8 @@ class HomePageBody extends StatelessWidget {
           const SearchBody(),
           const SizedBox(height: 16),
           const LocationBody(),
+          const SizedBox(height: 16),
+          const DescriptionBody(),
           const SizedBox(height: 24),
           Expanded(
             child: Center(
