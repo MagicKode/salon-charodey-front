@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:salon_charodey_front/feature/core/homepagescreen/sections/description/description_body.dart';
 import 'package:salon_charodey_front/feature/core/homepagescreen/sections/discount/discount_body.dart';
 import 'package:salon_charodey_front/feature/core/homepagescreen/sections/locationinfo/location_body.dart';
+import 'package:salon_charodey_front/feature/core/homepagescreen/sections/masters/master_body.dart';
 import 'package:salon_charodey_front/feature/core/homepagescreen/sections/searchbar/search_body.dart';
 import 'sections/greetingheader/greeting_body.dart';
 
@@ -10,8 +11,9 @@ class HomePageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,8 +26,11 @@ class HomePageBody extends StatelessWidget {
           const LocationBody(),
           const SizedBox(height: 16),
           const DescriptionBody(),
+          const SizedBox(height: 16),
+          MastersBody(),
           const SizedBox(height: 24),
-          Expanded(
+          SizedBox(
+            height: 100,
             child: Center(
               child: Text(
                 'Здесь будет контент\n(категории, услуги, мастера...)',
@@ -39,6 +44,7 @@ class HomePageBody extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 24),
         ],
       ),
     );
