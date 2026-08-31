@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salon_charodey_front/feature/core/profilescreen/profilescreen_body.dart';
 
+import '../catalog/catalog_body.dart';
 import '../mainlayout/main_layout_body.dart';
 import 'homepage_body.dart';
 
@@ -17,7 +18,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   List<Widget> get _pages => [
     const HomePageBody(),
-    const Center(child: Text('Каталог (заглушка)')),
+    CatalogBody(),
     ProfileScreebBody(themeNotifier: widget.themeNotifier),
   ];
 
