@@ -4,7 +4,7 @@ import '../../../../../uikit/widgets/card/discount_card.dart';
 import 'domain/discount_entity.dart';
 
 class DiscountBody extends StatelessWidget {
-  DiscountBody({super.key});
+  const DiscountBody({super.key});
 
   final List<DiscountEntity> _discounts = const [
     DiscountEntity(

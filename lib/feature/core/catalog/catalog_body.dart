@@ -3,7 +3,7 @@ import '../../../uikit/widgets/card/service_card.dart';
 import 'domain/service_entity.dart';
 
 class CatalogBody extends StatelessWidget {
-  CatalogBody({super.key});
+  const CatalogBody({super.key});
 
   // Заглушки – данные услуг
   final List<ServiceEntity> _services = const [

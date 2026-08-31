@@ -4,7 +4,7 @@ import '../../../../../uikit/widgets/card/master_card.dart';
 import 'domain/master_entity.dart';
 
 class MastersBody extends StatelessWidget {
-  MastersBody({super.key});
+  const MastersBody({super.key});
 
   final List<MasterEntity> _masters = const [
     MasterEntity(
